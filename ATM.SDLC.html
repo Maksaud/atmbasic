@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+    background-color:#1c202c;
+    font-family:sans-serif;
+}
+
+#firstpage{
+    position:absolute;
+    top:40%;
+    left:40%;
+    background-color:#ffff;
+    padding:10px 50px;
+    border-radius:25px;
+    border:solid #ffff 5px;
+}
+
+#secondpage{
+    position:absolute;
+    top:40%;
+    left:40%;
+    background-color:#ffff;
+    padding:10px 50px;
+    border-radius:25px;
+    border:solid #ffff 5px;
+}
+
+h4{
+    text-align:center;
+}
+
+.login, button{
+    background-color:#7586B8;
+    border:solid 2px;
+    border-radius:10px;
+    color:#ffffff;
+    padding:10px;
+}
+
+.login:hover, button:hover{
+    background-color:#ffffff;
+    color:#7586B8;
+    cursor:pointer;
+}
+
+
+</style>
+</head>
+<body>
+
+<!--Login Page-->    
+<div id = "firstpage">
+    <h4>
+        Login
+    </h4>
+    <form name = "Login">
+    <p>Password</p><input type="password" name = "password"><br><br>
+    <input class="login" type = "button" value = "Login!" onclick = "login()">
+</form>
+</div>
+
+
+
+<!--Balance Page-->
+<div style = "display:none;" id = "secondpage">
+    <h4 id = "balance"></h4>
+    <input type = "number" id = "amount" value="0"><br>
+    <br><button onclick = "deposit()">Deposit</button><span style="margin:2px"></span><button onclick = "Withdraw()">Withdraw</button>
+</div>
+
+<script>
+
+balance = 10000;
+
+
+function login(){
+    var hide = document.getElementById("firstpage");
+    var password = document.forms["Login"]["password"].value;
+    var show = document.getElementById("secondpage");
+    document.getElementById("balance").innerHTML = balance;
+
+    if(password != "12345"){
+        alert("The Password is incorrect");
+        location.reload();
+    }
+    if (hide.style.display === "none"){
+    hide.style.display = "block";
+    }
+    else{
+        hide.style.display = "none";
+    }
+
+    if (show.style.display === "block"){
+        show.style.display = "none";
+    }
+    else{
+        show.style.display = "block";
+    }
+}
+
+function deposit(){
+    var amount = document.getElementById("amount").value;
+    balance += parseInt(amount);
+    document.getElementById("balance").innerHTML = balance;
+}
+
+function Withdraw(){
+    var amount = document.getElementById("amount").value;
+    balance -= amount;
+    document.getElementById("balance").innerHTML = balance;
+}
+
+</script>
+
+</body>
+</html>
